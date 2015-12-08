@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="9.05" multi-file="no">
+  <meta>
+    <name>Project</name>
+    <authors> </authors>
+    <description />
+  </meta>
+  <counters models="1">
+    <entity-names>
+      <counter>
+        <item-type stereotype="" type="UmlClass" />
+        <value>6</value>
+      </counter>
+    </entity-names>
+    <entity-ids>
+      <counter>
+        <item-type stereotype="" type="UmlClass" />
+        <value>7</value>
+      </counter>
+      <counter>
+        <item-type stereotype="" type="UmlGeneralization" />
+        <value>3</value>
+      </counter>
+      <counter>
+        <item-type stereotype="" type="UmlDependency" />
+        <value>4</value>
+      </counter>
+      <counter>
+        <item-type stereotype="" type="AbstractElementGroup" />
+        <value>91</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
+        <value>1</value>
+      </counter>
+    </diagrams>
+    <fields>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
+        <value>8</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.AttributeField</type>
+        <value>8</value>
+      </counter>
+    </fields>
+  </counters>
+  <alias-groups />
+  <management>
+    <persons>
+      <person id="P15446eb854ca49a3813eddc5d1a4b2d9">
+        <first-name />
+        <last-name />
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+      </person>
+    </persons>
+    <tasks />
+    <requirements />
+    <issues />
+    <to-dos />
+  </management>
+  <glossary />
+  <types>
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types>
+      <type id="byte[]" tid="" name="byte[]" description="" nullable="false" />
+      <type id="Uint32" tid="" name="Uint32" description="" nullable="false" />
+      <type id="Uint32[2] result" tid="" name="Uint32[2] result" description="" nullable="false" />
+      <type id="UInt32[2] dataPart" tid="" name="UInt32[2] dataPart" description="" nullable="false" />
+      <type id="Uint32 [8] key" tid="" name="Uint32 [8] key" description="" nullable="false" />
+      <type id="uint16_t" tid="" name="uint16_t" description="" nullable="false" />
+      <type id="byte crc" tid="" name="byte crc" description="" nullable="false" />
+    </custom-types>
+  </types>
+  <filters />
+  <items />
+  <models>
+    <model id="p12068eb0212a4d6d917a31a9d8809416_915083036" name="Model 1" namespace="" order-index="1" expanded="true">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>12/06/2015 22:24:43</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-class" id="p73f37be552814316b0b7cbc18fd46e28_912862295" name="ClassDiagram1" order-index="1" expanded="true" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" view-location="-129,-159">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>12/06/2015 22:24:43</creation-date>
+          <change-date>12/07/2015 16:15:50</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di823732998895798920" cid="C001" type="class" name="Class1" style-class="" visibility="package" change-tracking-state="added" creator="P15446eb854ca49a3813eddc5d1a4b2d9" creation-date="12/06/2015 22:24:54">
+            <style class="default" />
+          </item>
+          <item id="di559356970889107525" cid="C002" type="class" name="BinFileReader" style-class="" visibility="package" change-tracking-state="added" creator="P15446eb854ca49a3813eddc5d1a4b2d9" creation-date="12/06/2015 22:24:58">
+            <style class="default" />
+            <attributes>
+              <attribute id="a10e5c00e89234e1794db43451be5584e469" cid="AT001" name="FileInputName" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a6c9df3d980214580a54a5c6ce76642c3472" cid="AT002" name="FileOutputName" type="String" type-id="Uml.String" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a96d0e205b8e449548c18cc9c9a85a185244" cid="AT003" name="FileSize" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="of142301624ec4a88aa0c2111d5a5da2f930" cid="OP001" name="ReadFile" type="byte[]" type-id="byte[]" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pcdbf3e0545ed4dfebcd6cf46accf2178" name="string FileInputName" type="" type-id="" />
+                </parameters>
+              </operation>
+              <operation id="obd958334bb1a4dacae6b48731f318ddc56" cid="OP002" name="WriteFile" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="paa4bc94e337a41df8dbe27b6f4cd346d" name="byte" type="" type-id="" multiplicity="*" />
+                  <parameter id="p766ea11e280a404fb9ffa0d883cdd3c2" name="string fileOutputName" type="" type-id="" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di987068652528716170" cid="C003" type="class" name="Gost28147_89_Cryptor" style-class="" visibility="package" change-tracking-state="added" creator="P15446eb854ca49a3813eddc5d1a4b2d9" creation-date="12/06/2015 22:25:00">
+            <style class="default" />
+            <attributes>
+              <attribute id="a45b6255837dc44ea85b6aea2c3df802f113" cid="AT004" name="Key" type="Uint32" type-id="Uint32" visibility="private" multiplicity="8">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="ob49aafc984ee4d23b86e56e62bda1f175" cid="OP003" name="Crypt" type="Uint32[2] result" type-id="Uint32[2] result" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p5cb2a2c211a2439c97b5ece4e2c26c82" name="UInt32" type="" type-id="" default-value="data" multiplicity="2" />
+                </parameters>
+              </operation>
+              <operation id="o8c66fc108baf495792979b14a8696c69748" cid="OP004" name="Decypt" type="Uint32[2] result" type-id="Uint32[2] result" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pb7a1477713a54662858bad10be21e663" name="UInt32" type="" type-id="" default-value="data" multiplicity="2" />
+                </parameters>
+              </operation>
+              <operation id="o3052e37ce67945e7b1b43fbe87da5e39475" cid="OP005" name="ReadKey" type="Uint32 [8] key" type-id="Uint32 [8] key" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p03db74b9276245cab530b8c461d95adf" name="string FileName" type="" type-id="" />
+                </parameters>
+              </operation>
+              <operation id="o2ed514b7415446cc8cf4de114b7101a6250" cid="OP006" name="DataParser" type="UInt32[2] dataPart" type-id="UInt32[2] dataPart" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p3075278bed59457d90ac6719499bc0ea" name="UInt32" type="" type-id="" default-value="data" multiplicity="*" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di245212505866383259" cid="DEP001" type="dependency" name="" style-class="" visibility="package" change-tracking-state="added" creator="P15446eb854ca49a3813eddc5d1a4b2d9" creation-date="12/07/2015 00:12:26">
+            <stereotypes>
+              <stereotype name="use" />
+            </stereotypes>
+            <style class="default" />
+          </item>
+          <item id="di655868541790233046" cid="DEP002" type="dependency" name="" style-class="" visibility="package" change-tracking-state="added" creator="P15446eb854ca49a3813eddc5d1a4b2d9" creation-date="12/07/2015 00:12:43">
+            <stereotypes>
+              <stereotype name="use" />
+            </stereotypes>
+            <style class="default" />
+          </item>
+          <item id="di348031439743728532" cid="C006" type="class" name="CRC" style-class="" visibility="package" change-tracking-state="added" creation-date="12/07/2015 16:13:50">
+            <style class="default" />
+            <attributes>
+              <attribute id="a4beb1bdfafe44434a4da2707ca32ddae744" cid="AT006" name="CRC" type="uint16_t" type-id="uint16_t" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="oe09406e77fc24221ab8a1cade6b67cb4892" cid="OP007" name="CRC" type="byte crc" type-id="byte crc" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p317e1d9389224a03ade8621b500e3980" name="Byte" type="" type-id="" default-value="data" multiplicity="*" />
+                </parameters>
+              </operation>
+            </operations>
+          </item>
+          <item id="di878308209172893142" cid="DEP003" type="dependency" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="12/07/2015 16:15:50">
+            <stereotypes>
+              <stereotype name="use" />
+            </stereotypes>
+            <style class="default" />
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di823732998895798920" iid="04b3ba6ac2cf46239f5623797f33b618" creation-date="12/06/2015 22:24:54" order-index="0" type="entity">
+            <layout ax="-37" ay="-73" awidth="188" aheight="200" x="-37" y="-73" width="188" height="200" angle="0" />
+            <class />
+          </item>
+          <item id="di559356970889107525" iid="8b9e7c750d0f452a87605803ffc99a0e" creation-date="12/06/2015 22:24:58" order-index="1" type="entity">
+            <layout ax="-37" ay="243" awidth="304" aheight="183" x="-37" y="243" width="304" height="183" angle="0" />
+            <class />
+          </item>
+          <item id="di245212505866383259" iid="4462e5e27a7e4d349ba87c53c16c53b0" creation-date="12/07/2015 00:12:26" order-index="3" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" auto-path="" x1="76" y1="127" x2="98" y2="243" start-border-pos="0.599876982100466" end-border-pos="0.110861690420853" name-position="10,-10">
+              <points>
+                <point x="76" y="127" />
+                <point x="98" y="243" />
+              </points>
+            </layout>
+            <relation from="di823732998895798920" from-iid="04b3ba6ac2cf46239f5623797f33b618" to="di559356970889107525" to-iid="8b9e7c750d0f452a87605803ffc99a0e" />
+          </item>
+          <item id="di987068652528716170" iid="4f050fee12da435a94989e9599c239d8" creation-date="12/06/2015 22:25:00" order-index="2" type="entity">
+            <layout ax="362" ay="243" awidth="407" aheight="233" x="362" y="243" width="407" height="233" angle="0" />
+            <class />
+          </item>
+          <item id="di655868541790233046" iid="67f93d07dc7a461d9dfaae6fef24f19d" creation-date="12/07/2015 00:12:43" order-index="4" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="151" y1="40" x2="362" y2="311" start-border-pos="0.39125" end-border-pos="0.926984126984127" name-position="10,-10" name-width="54">
+              <points>
+                <point x="151" y="40" />
+                <point x="268" y="163" />
+                <point x="362" y="311" />
+              </points>
+            </layout>
+            <relation from="di823732998895798920" from-iid="04b3ba6ac2cf46239f5623797f33b618" to="di987068652528716170" to-iid="4f050fee12da435a94989e9599c239d8" />
+          </item>
+          <item id="di348031439743728532" iid="64db3620e5894ea1b260e9ec8e323864" creation-date="12/07/2015 16:13:50" order-index="5" type="entity">
+            <layout ax="864" ay="243" awidth="268" aheight="130" x="864" y="243" width="268" height="130" angle="0" />
+            <class />
+          </item>
+          <item id="di878308209172893142" iid="bb4362df0d284a95a5b1217bfb435f4e" creation-date="12/07/2015 16:15:50" order-index="6" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" auto-path="" x1="151" y1="32" x2="936" y2="243" start-border-pos="0.3811492228508" end-border-pos="0.0668506906993354" name-position="10,-10">
+              <points>
+                <point x="151" y="32" />
+                <point x="764" y="64" />
+                <point x="936" y="243" />
+              </points>
+            </layout>
+            <relation from="di823732998895798920" from-iid="04b3ba6ac2cf46239f5623797f33b618" to="di348031439743728532" to-iid="64db3620e5894ea1b260e9ec8e323864" />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+  <documents />
+  <document-templates />
+</sim-project>
