@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 /*
  * The GOST 28147-89 cipher
@@ -68,6 +69,15 @@ namespace fw_gost_cryptor
 		private byte[] k65 = new byte[256];
 		private byte[] k43 = new byte[256];
 		private byte[] k21 = new byte[256];
+
+		private UInt32[] key =new UInt32[8] { 0x11111111, 0x22222222, 0x33333333, 0x44444444, 0x55555555, 0x66666666, 0x77777777, 0x88888888 };
+
+		public UInt32[] Key 
+		{
+			get { return key; }
+			set { key = value; }
+		}
+
 
 		public void kboxinit()
 		{
@@ -195,5 +205,28 @@ namespace fw_gost_cryptor
 			output[0] = n2;
 			output[1] = n1;
 		}
+
+		public void ReadKey()
+		{
+			try
+			{
+				StreamReader streamReader = new StreamReader("key.csv");
+							string s = "";
+							while (s != null) 
+							{
+								s = streamReader.ReadLine();
+							}
+							string[] keyUnits = s.Split(';');
+
+			}
+			catch (Exception)
+			{
+				message("Key file not found!");
+				throw;
+			}
+			
+		}
+
+		public event Action<string> message;
 	}
 }

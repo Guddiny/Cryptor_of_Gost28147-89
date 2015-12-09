@@ -3,3 +3,8 @@ E:\Projekts\VsualStudio2010\fw_gost_cryptor\fw_gost_cryptor\bin\Debug\fw_gost_cr
 E:\Projekts\VsualStudio2010\fw_gost_cryptor\fw_gost_cryptor\obj\x86\Debug\fw_gost_cryptor.exe
 E:\Projekts\VsualStudio2010\fw_gost_cryptor\fw_gost_cryptor\obj\x86\Debug\fw_gost_cryptor.pdb
 E:\Projekts\VsualStudio2010\fw_gost_cryptor\fw_gost_cryptor\obj\x86\Debug\fw_gost_cryptor.csprojResolveAssemblyReference.cache
+E:\Projekts\GitHub\Cryptor_of_Gost28147-89\fw_gost_cryptor\obj\x86\Debug\fw_gost_cryptor.exe
+E:\Projekts\GitHub\Cryptor_of_Gost28147-89\fw_gost_cryptor\obj\x86\Debug\fw_gost_cryptor.pdb
+E:\Projekts\GitHub\Cryptor_of_Gost28147-89\fw_gost_cryptor\bin\Debug\fw_gost_cryptor.exe
+E:\Projekts\GitHub\Cryptor_of_Gost28147-89\fw_gost_cryptor\bin\Debug\fw_gost_cryptor.pdb
+E:\Projekts\GitHub\Cryptor_of_Gost28147-89\fw_gost_cryptor\obj\x86\Debug\fw_gost_cryptor.csprojResolveAssemblyReference.cache

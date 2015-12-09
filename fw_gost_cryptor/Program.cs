@@ -22,7 +22,7 @@ namespace fw_gost_cryptor
 			int lenght = (int)fileStream.Length;
 
 			gost28147_89.kboxinit();
-
+			gost28147_89.ReadKey();
 			byte[] dataByte = binReader.ReadBytes(lenght);
 
 
