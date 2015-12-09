@@ -110,6 +110,12 @@ namespace fw_gost_cryptor
 			return x << 11 | x >> (32 - 11);
 		}
 
+		/// <summary>
+		/// Crypt data
+		/// </summary>
+		/// <param name="input"></param>
+		/// <param name="output"></param>
+		/// <param name="key"></param>
 		public void gostcrypt(uint[] input, uint[] output, uint[] key)
 		{
 			uint n1, n2; /* As named in the GOST */
@@ -159,6 +165,12 @@ namespace fw_gost_cryptor
 			output[1] = n1;
 		}
 
+		/// <summary>
+		/// Decrypt data
+		/// </summary>
+		/// <param name="input"></param>
+		/// <param name="output"></param>
+		/// <param name="key"></param>
 		public void gostdecrypt(uint[] input, uint[] output, uint[] key)
 		{
 			uint n1, n2; /* As named in the GOST */
@@ -206,27 +218,29 @@ namespace fw_gost_cryptor
 			output[1] = n1;
 		}
 
+		/// <summary>
+		/// Read key in file "key.csv"
+		/// </summary>
 		public void ReadKey()
 		{
 			try
 			{
 				StreamReader streamReader = new StreamReader("key.csv");
 							string s = "";
-							while (s != null) 
+							while ((s = streamReader.ReadLine()) != null) 
 							{
-								s = streamReader.ReadLine();
-							}
-							string[] keyUnits = s.Split(';');
+								string[] keyUnits = s.Split(';');
 
+								for (int i = 0; i < keyUnits.Length; i++)
+								{
+									key[i] = Convert.ToUInt32(keyUnits[i], 16);
+								}
+							}
 			}
 			catch (Exception)
 			{
-				message("Key file not found!");
-				throw;
+				Console.WriteLine("File npt found");
 			}
-			
 		}
-
-		public event Action<string> message;
 	}
 }
