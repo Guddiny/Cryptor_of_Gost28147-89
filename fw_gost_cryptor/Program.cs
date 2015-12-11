@@ -1,40 +1,84 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace fw_gost_cryptor
 {
 	class Program
 	{
+		[STAThread]
 		static void Main(string[] args)
 		{
-			uint[] key = { 0x11111111, 0x22222222, 0x33333333, 0x44444444, 0x55555555, 0x66666666, 0x77777777, 0x88888888 };
-			uint[] plain = { 0xAAAAAAAA, 0xBBBBBBBB };
-			uint[] cipher = new uint[2];
-			uint[] result = new uint[2];
-			int position = 0;
+			Console.Title = "Gost 28147-89 Cryptor";
+			Console.ForegroundColor = ConsoleColor.Cyan;
+			Console.BackgroundColor = ConsoleColor.DarkBlue;
+			Console.Clear();
+			Console.WriteLine("Welcom! \r\n");
 
-			FileStream fileStream = new FileStream(@"usb_hid_64_11.bin", FileMode.Open);
-			BinaryReader binReader = new BinaryReader(fileStream);
+			string fileName = "";
+			string key = "";
+
+			FileCommander fileCommander = new FileCommander();
 			Gost28147_89 gost28147_89 = new Gost28147_89();
-			int lenght = (int)fileStream.Length;
+			OpenFileDialog openFileDialog = new OpenFileDialog();
 
-			gost28147_89.kboxinit();
-			gost28147_89.ReadKey();
-			byte[] dataByte = binReader.ReadBytes(lenght);
+			if (openFileDialog.ShowDialog() == DialogResult.OK)
+			{
+				gost28147_89.kboxinit();
+				gost28147_89.ReadKey();
 
+				fileName = openFileDialog.FileName;
 
+				byte[] inputData = fileCommander.ReadFile(fileName);
 
-			/*Console.WriteLine("{0:x2} ", plain[0]);
-			gost28147_89.gostcrypt(plain, cipher, key);
-			Console.WriteLine("{0:x2} ", cipher[0]);
-			gost28147_89.gostdecrypt(cipher, result, key);
-			Console.WriteLine("{0:x2} ",result[0]);*/
+				Console.WriteLine("Pess \"C\" for crypt file \r\n");
+				Console.WriteLine("Pess \"D\" for decrypt file \r\n");
 
-			Console.WriteLine(lenght);
-			Console.ReadKey();
+				ConsoleKeyInfo cki = Console.ReadKey();
+				if (cki.KeyChar == 'c')
+				{
+					byte[] outputData = gost28147_89.gostDataCrypt(inputData);
+
+					fileCommander.WriteFile(outputData);
+				
+					Console.Beep();
+					for (int i = 0; i < gost28147_89.Key.Length; i++)
+					{
+						key += (gost28147_89.Key[i]).ToString() + " \r\n ";
+					}
+					Console.WriteLine("Key: \r\n {0}", key);
+					Console.WriteLine("File size is: {0} bytes", fileCommander.FileSize);
+					Console.WriteLine("CRC16 is: {0}", CRC.crc16(outputData, outputData.Length));
+					Console.WriteLine("Crypted file saved: {0}", fileCommander.OutputFileName);
+					Console.ReadKey();
+				}
+				else if (cki.KeyChar == 'd')
+				{
+					byte[] outputData = gost28147_89.gostDataDecrypt(inputData);
+
+					fileCommander.WriteFile(outputData);
+
+					Console.Beep();
+					for (int i = 0; i < gost28147_89.Key.Length; i++)
+					{
+						key += (gost28147_89.Key[i]).ToString() + " \r\n ";
+					}
+					Console.WriteLine("Key: \r\n {0}", key);
+					Console.WriteLine("File size is: {0} bytes", fileCommander.FileSize);
+					Console.WriteLine("CRC16 is: {0}", CRC.crc16(outputData, outputData.Length));
+					Console.WriteLine("Crypted file saved: {0}", fileCommander.OutputFileName);
+					Console.ReadKey();
+				}
+				else
+				{
+					Console.WriteLine("Error symbol");
+					Console.ReadKey();
+				}
+			}
 		}
 	}
 }
