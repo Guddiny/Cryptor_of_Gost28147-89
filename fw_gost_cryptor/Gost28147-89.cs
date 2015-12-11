@@ -70,6 +70,8 @@ namespace fw_gost_cryptor
 		private byte[] k43 = new byte[256];
 		private byte[] k21 = new byte[256];
 
+		private static int BYTECOUNT = 4;
+
 		private UInt32[] key =new UInt32[8] { 0x11111111, 0x22222222, 0x33333333, 0x44444444, 0x55555555, 0x66666666, 0x77777777, 0x88888888 };
 
 		public UInt32[] Key 
@@ -111,12 +113,41 @@ namespace fw_gost_cryptor
 		}
 
 		/// <summary>
-		/// Crypt data
+		/// Convert small(byte[]) to big(UInt32)
+		/// </summary>
+		/// <param name="data"></param>
+		/// <returns></returns>
+		public UInt32 SmallToBig(byte[] data)
+		{
+			UInt32 result = 0;
+			for (int i = 0; i < data.Length; i++)
+				result = (UInt32)(result | (data[i] << (8 * i)));
+
+			return result;
+		}
+
+		/// <summary>
+		/// Parse big(UInt32) to small(byte[])
+		/// </summary>
+		/// <param name="StartPosition"></param>
+		/// <param name="QTY"></param>
+		/// <param name="data"></param>
+		/// <param name="Big"></param>
+		public void BigToSmall(int StartPosition, int QTY, byte[] data, UInt32 Big)
+		{
+			int i = 0;
+			for (i = 0; i < QTY; i++)
+			{
+				data[StartPosition + i] = (byte)((Big & (0x000000FF << 8 * i)) >> 8 * i);
+			}
+		}
+		/// <summary>
+		/// Crypt data block
 		/// </summary>
 		/// <param name="input"></param>
 		/// <param name="output"></param>
 		/// <param name="key"></param>
-		public void gostcrypt(uint[] input, uint[] output, uint[] key)
+		public void gostBlockCrypt(uint[] input, uint[] output, uint[] key)
 		{
 			uint n1, n2; /* As named in the GOST */
 
@@ -166,12 +197,12 @@ namespace fw_gost_cryptor
 		}
 
 		/// <summary>
-		/// Decrypt data
+		/// Decrypt data block
 		/// </summary>
 		/// <param name="input"></param>
 		/// <param name="output"></param>
 		/// <param name="key"></param>
-		public void gostdecrypt(uint[] input, uint[] output, uint[] key)
+		public void gostBlockDecrypt(uint[] input, uint[] output, uint[] key)
 		{
 			uint n1, n2; /* As named in the GOST */
 
@@ -218,6 +249,93 @@ namespace fw_gost_cryptor
 			output[1] = n1;
 		}
 
+
+		public byte[] gostDataCrypt(byte[] data)
+		{
+			if (data.Length % 4 != 0)
+			{
+				int lenght = (data.Length / 5) * 4 + 4;
+				Array.Resize<byte>(ref data, lenght);
+			}
+
+			byte[] tempSmallData = new byte[BYTECOUNT];
+			UInt32[] tempBigData = new UInt32[2];
+			UInt32[] cryptedBigData = new UInt32[2];
+			byte[] cryptedSmalData = new byte[data.Length];
+			int k = 0;
+			int j = 0;
+			int p = 0;
+
+			for (int i = 0; i < data.Length; i++)
+			{
+				tempSmallData[k] = data[i];
+				if (k == 3)
+				{
+					k = 0;
+					tempBigData[j] = SmallToBig(tempSmallData);
+					j++;
+					if (j == 2)
+					{
+						j = 0;
+						gostBlockCrypt(tempBigData, cryptedBigData, key);
+						for (int m = 0; m < cryptedBigData.Length; m++)
+						{
+							BigToSmall(p, BYTECOUNT, cryptedSmalData, cryptedBigData[m]);
+							p+= BYTECOUNT;
+						}
+					}
+				}
+				else
+				{
+					k++;
+				}
+			}
+			return cryptedSmalData;
+		}
+
+		public byte[] gostDataDecrypt(byte[] data)
+		{
+			if (data.Length % 4 != 0)
+			{
+				int lenght = (data.Length / 5) * 4 + 4;
+				Array.Resize<byte>(ref data, lenght);
+			}
+
+			byte[] tempSmallData = new byte[BYTECOUNT];
+			UInt32[] tempBigData = new UInt32[2];
+			UInt32[] decryptedBigData = new UInt32[2];
+			byte[] decryptedSmalData = new byte[data.Length];
+			int k = 0;
+			int j = 0;
+			int p = 0;
+
+			for (int i = 0; i < data.Length; i++)
+			{
+				tempSmallData[k] = data[i];
+				if (k == 3)
+				{
+					k = 0;
+					tempBigData[j] = SmallToBig(tempSmallData);
+					j++;
+					if (j == 2)
+					{
+						j = 0;
+						gostBlockDecrypt(tempBigData, decryptedBigData, key);
+						for (int m = 0; m < decryptedBigData.Length; m++)
+						{
+							BigToSmall(p, BYTECOUNT, decryptedSmalData, decryptedBigData[m]);
+							p += BYTECOUNT;
+						}
+					}
+				}
+				else
+				{
+					k++;
+				}
+			}
+			return decryptedSmalData;
+		}
+		
 		/// <summary>
 		/// Read key in file "key.csv"
 		/// </summary>
@@ -225,7 +343,7 @@ namespace fw_gost_cryptor
 		{
 			try
 			{
-				StreamReader streamReader = new StreamReader("key.csv");
+				StreamReader streamReader = new StreamReader("ke1y.csv");
 							string s = "";
 							while ((s = streamReader.ReadLine()) != null) 
 							{
@@ -239,7 +357,7 @@ namespace fw_gost_cryptor
 			}
 			catch (Exception)
 			{
-				Console.WriteLine("File npt found");
+				Console.WriteLine("Key file not found. Using default key.");
 			}
 		}
 	}

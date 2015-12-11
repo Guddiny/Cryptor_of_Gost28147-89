@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
+using System.Threading.Tasks;
+using Microsoft.Win32;
 
 namespace fw_gost_cryptor
 {
@@ -10,26 +12,23 @@ namespace fw_gost_cryptor
 	{
 		static void Main(string[] args)
 		{
-			
-			uint[] plain = { 0xAAAAAAAA, 0xBBBBBBBB };
-			uint[] cipher = new uint[2];
-			uint[] result = new uint[2];
-			int position = 0;
+			Console.BackgroundColor = ConsoleColor.DarkBlue;
+			Console.Clear();
 
-			ReadBinary readBinary = new ReadBinary();
-			readBinary.ReadFile("usb_hid_64_11.bin");
+			FileCommander fileCommander = new FileCommander();
 			Gost28147_89 gost28147_89 = new Gost28147_89();
-
-
+			
 			gost28147_89.kboxinit();
 			gost28147_89.ReadKey();
 
-			Console.WriteLine("{0:x2} ", plain[0]);
-			gost28147_89.gostcrypt(plain, cipher, gost28147_89.Key);
-			Console.WriteLine("{0:x2} ", cipher[0]);
-			gost28147_89.gostdecrypt(cipher, result, gost28147_89.Key);
-			Console.WriteLine("{0:x2} ",result[0]);
+			byte[] inputData = fileCommander.ReadFile("usb_hid_64_11.bin");
 
+			byte[] outputData = gost28147_89.gostDataCrypt(inputData);
+
+			byte[] reoutputData = gost28147_89.gostDataDecrypt(outputData);
+
+
+			Console.WriteLine("File size is: {0} bytes", fileCommander.FileSize);
 			Console.ReadKey();
 		}
 	}
