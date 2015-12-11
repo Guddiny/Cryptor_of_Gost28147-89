@@ -249,14 +249,23 @@ namespace fw_gost_cryptor
 			output[1] = n1;
 		}
 
-
+		/// <summary>
+		/// Crypted data array(byte)
+		/// </summary>
+		/// <param name="data"></param>
+		/// <returns></returns>
 		public byte[] gostDataCrypt(byte[] data)
 		{
 			if (data.Length % 4 != 0)
 			{
-				int lenght = (data.Length / 5) * 4 + 4;
+				int lenght = (data.Length / 4) * 4 + 4;
 				Array.Resize<byte>(ref data, lenght);
 			}
+			if ((data.Length / 4) % 2 != 0)
+			{
+				Array.Resize<byte>(ref data, data.Length + 4);
+			}
+	
 
 			byte[] tempSmallData = new byte[BYTECOUNT];
 			UInt32[] tempBigData = new UInt32[2];
@@ -278,7 +287,7 @@ namespace fw_gost_cryptor
 					{
 						j = 0;
 						gostBlockCrypt(tempBigData, cryptedBigData, key);
-						for (int m = 0; m < cryptedBigData.Length; m++)
+							for (int m = 0; m < cryptedBigData.Length; m++)
 						{
 							BigToSmall(p, BYTECOUNT, cryptedSmalData, cryptedBigData[m]);
 							p+= BYTECOUNT;
@@ -293,6 +302,11 @@ namespace fw_gost_cryptor
 			return cryptedSmalData;
 		}
 
+		/// <summary>
+		/// Derypted data array(byte)
+		/// </summary>
+		/// <param name="data"></param>
+		/// <returns></returns>
 		public byte[] gostDataDecrypt(byte[] data)
 		{
 			if (data.Length % 4 != 0)
@@ -343,7 +357,7 @@ namespace fw_gost_cryptor
 		{
 			try
 			{
-				StreamReader streamReader = new StreamReader("ke1y.csv");
+				StreamReader streamReader = new StreamReader("key.csv");
 							string s = "";
 							while ((s = streamReader.ReadLine()) != null) 
 							{

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
 [assembly: AssemblyTitle("fw_gost_cryptor")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Sofware for cryp binary files")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("fw_gost_cryptor")]

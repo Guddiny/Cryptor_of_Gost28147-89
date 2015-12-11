@@ -14,7 +14,7 @@ namespace fw_gost_cryptor
 		private uint fileSize = 0;
 
 		// geters and setters
-		public string InputFileName 
+		public string InputFileName
 		{
 			get { return inputFileName; }
 		}
@@ -25,7 +25,7 @@ namespace fw_gost_cryptor
 			set { outputFileName = value; }
 		}
 
-		public uint FileSize 
+		public uint FileSize
 		{
 			get { return fileSize; }
 		}
@@ -47,12 +47,19 @@ namespace fw_gost_cryptor
 				data = new byte[fileReadStream.Length];
 				fileSize = (uint)fileReadStream.Length;
 				fileReadStream.Read(data, 0, data.Length);
-				outputFileName = inputFileName + "-crypted";
+				if (inputFileName.Contains("-crypted"))
+				{
+					outputFileName = inputFileName.Replace("-crypted", "-uncrypted");
+				}
+				else
+				{
+					outputFileName = inputFileName.Insert(inputFileName.Length - 4, "-crypted");
+				}
 			}
 			catch (Exception)
 			{
 				data = new byte[] { 0 };
-				Console.WriteLine("File not found, or bad file name");
+				Console.WriteLine("The target file not found, or bad file name");
 			}
 			finally
 			{
