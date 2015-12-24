@@ -9,8 +9,8 @@ namespace fw_gost_cryptor
 	public class FileCommander
 	{
 		// Private variable
-		private string inputFileName = "";
-		private string outputFileName = "";
+		protected string inputFileName = "";
+		protected string outputFileName = "";
 		private uint fileSize = 0;
 
 		// geters and setters
@@ -73,12 +73,12 @@ namespace fw_gost_cryptor
 		/// Create and save encrypted file
 		/// </summary>
 		/// <param name="data"></param>
-		public void WriteFile(byte[] data)
+		public  void WriteFile(byte[] data)
 		{
 			FileStream fileWriteStream = null;
 			try
 			{
-				fileWriteStream = new FileStream(@outputFileName, FileMode.OpenOrCreate);
+				fileWriteStream = new FileStream(outputFileName, FileMode.OpenOrCreate);
 				fileWriteStream.Write(data, 0, data.Length);
 			}
 			catch (Exception)

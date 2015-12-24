@@ -21,10 +21,12 @@ namespace fw_gost_cryptor
 
 			string fileName = "";
 			string key = "";
+			byte[] inputData;
 
 			FileCommander fileCommander = new FileCommander();
 			Gost28147_89 gost28147_89 = new Gost28147_89();
 			OpenFileDialog openFileDialog = new OpenFileDialog();
+			XmlFileCommander xmlFileCommander = new XmlFileCommander();
 
 			if (openFileDialog.ShowDialog() == DialogResult.OK)
 			{
@@ -33,17 +35,16 @@ namespace fw_gost_cryptor
 
 				fileName = openFileDialog.FileName;
 
-				byte[] inputData = fileCommander.ReadFile(fileName);
-
 				Console.WriteLine("Pess \"C\" for crypt file \r\n");
 				Console.WriteLine("Pess \"D\" for decrypt file \r\n");
 
 				ConsoleKeyInfo cki = Console.ReadKey();
-				if (cki.KeyChar == 'c')
+				if (cki.KeyChar == 'c')										//Если нажата кнопка "C"
 				{
+					inputData = fileCommander.ReadFile(fileName);
 					byte[] outputData = gost28147_89.gostDataCrypt(inputData);
 
-					fileCommander.WriteFile(outputData);
+					xmlFileCommander.WriteXml(outputData, fileCommander.OutputFileName);
 				
 					Console.Beep();
 					for (int i = 0; i < gost28147_89.Key.Length; i++)
@@ -56,8 +57,10 @@ namespace fw_gost_cryptor
 					Console.WriteLine("Crypted file saved: {0}", fileCommander.OutputFileName);
 					Console.ReadKey();
 				}
-				else if (cki.KeyChar == 'd')
+				else if (cki.KeyChar == 'd')							//Если нажата кнопка "C"
 				{
+					inputData = fileCommander.ReadFile(fileName);
+					inputData = xmlFileCommander.ReadXml(fileName, "data");
 					byte[] outputData = gost28147_89.gostDataDecrypt(inputData);
 
 					fileCommander.WriteFile(outputData);
