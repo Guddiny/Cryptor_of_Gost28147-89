@@ -53,7 +53,7 @@ namespace fw_gost_cryptor
 			xmlWriter.WriteStartElement("project");
 				xmlWriter.WriteStartElement("firmware");
 					xmlWriter.WriteAttributeString("data", Convert.ToString(MyStringBuilder));
-					xmlWriter.WriteAttributeString("version", "1.12");
+					xmlWriter.WriteAttributeString("version", "0000");
 				xmlWriter.WriteEndElement();
 			xmlWriter.WriteEndElement();
 			xmlWriter.Close();
